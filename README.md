@@ -11,7 +11,7 @@ Un repositorio listo para clonar que convierte la Economía Financiera en un lab
 
 ```bash
 git clone https://github.com/vinicioarcos/ECONOMIA_FINACIERA_MODERNA.git
-cdECONOMIA_FINACIERA_MODERNA
+cd ECONOMIA_FINACIERA_MODERNA
 pip install -r requirements.txt
 python data/generate_data.py
 pytest tests/ -v                  # 22 tests, todos deben pasar
