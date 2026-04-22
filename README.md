@@ -14,12 +14,17 @@ git clone https://github.com/vinicioarcos/ECONOMIA_FINACIERA_MODERNA.git
 cd ECONOMIA_FINACIERA_MODERNA
 pip install -r requirements.txt
 python data/generate_data.py
+
+# en python
+python -m pytest tests/ -v
 # en powershell de windows para poder hacer los tests
-# $env:PYTHONPATH = "."
-# pytest tests/ -v
+$env:PYTHONPATH = "."
+pytest tests/ -v
+
+# en python
 jupyter notebook
 # En power shell de windows para poder abrir el notebook
-# python -m jupyter notebook  
+python -m jupyter notebook  
 
 ```
 
