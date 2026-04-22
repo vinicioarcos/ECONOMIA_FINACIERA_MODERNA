@@ -1,0 +1,513 @@
+{
+  "cohort_size": 28,
+  "weeks_completed": 16,
+  "course_average": 66.8,
+  "approval_rate": 67.3,
+  "at_risk_count": 6,
+  "students": [
+    {
+      "student_id": "S020",
+      "name": "Ignacio Bravo",
+      "avg_score": 93.0,
+      "weeks_submitted": 16,
+      "last_score": 83.2,
+      "std_score": 6.7,
+      "risk": "bajo",
+      "trend": -3.18
+    },
+    {
+      "student_id": "S009",
+      "name": "Isabella Ruiz",
+      "avg_score": 87.5,
+      "weeks_submitted": 16,
+      "last_score": 88.4,
+      "std_score": 8.0,
+      "risk": "bajo",
+      "trend": 0.87
+    },
+    {
+      "student_id": "S005",
+      "name": "Valeria Cruz",
+      "avg_score": 85.5,
+      "weeks_submitted": 16,
+      "last_score": 72.7,
+      "std_score": 7.5,
+      "risk": "bajo",
+      "trend": -2.63
+    },
+    {
+      "student_id": "S010",
+      "name": "Sebasti\u00e1n Paz",
+      "avg_score": 81.4,
+      "weeks_submitted": 16,
+      "last_score": 96.0,
+      "std_score": 11.6,
+      "risk": "bajo",
+      "trend": 3.72
+    },
+    {
+      "student_id": "S027",
+      "name": "Fernanda Pinto",
+      "avg_score": 80.9,
+      "weeks_submitted": 16,
+      "last_score": 75.6,
+      "std_score": 7.7,
+      "risk": "bajo",
+      "trend": -3.04
+    },
+    {
+      "student_id": "S001",
+      "name": "Ana Torres",
+      "avg_score": 79.5,
+      "weeks_submitted": 15,
+      "last_score": 84.2,
+      "std_score": 7.0,
+      "risk": "bajo",
+      "trend": 0.56
+    },
+    {
+      "student_id": "S023",
+      "name": "Carolina Salinas",
+      "avg_score": 77.2,
+      "weeks_submitted": 16,
+      "last_score": 92.0,
+      "std_score": 9.7,
+      "risk": "bajo",
+      "trend": 1.39
+    },
+    {
+      "student_id": "S013",
+      "name": "Natalia Jim\u00e9nez",
+      "avg_score": 76.9,
+      "weeks_submitted": 16,
+      "last_score": 71.0,
+      "std_score": 6.3,
+      "risk": "bajo",
+      "trend": -5.04
+    },
+    {
+      "student_id": "S003",
+      "name": "Sof\u00eda Vega",
+      "avg_score": 76.3,
+      "weeks_submitted": 16,
+      "last_score": 68.6,
+      "std_score": 6.8,
+      "risk": "bajo",
+      "trend": -2.82
+    },
+    {
+      "student_id": "S007",
+      "name": "Camila Ortiz",
+      "avg_score": 76.0,
+      "weeks_submitted": 16,
+      "last_score": 82.9,
+      "std_score": 7.4,
+      "risk": "bajo",
+      "trend": -0.27
+    },
+    {
+      "student_id": "S008",
+      "name": "Mateo Silva",
+      "avg_score": 74.2,
+      "weeks_submitted": 15,
+      "last_score": 67.5,
+      "std_score": 7.2,
+      "risk": "bajo",
+      "trend": -6.66
+    },
+    {
+      "student_id": "S011",
+      "name": "Daniela Reyes",
+      "avg_score": 71.8,
+      "weeks_submitted": 16,
+      "last_score": 64.3,
+      "std_score": 9.5,
+      "risk": "bajo",
+      "trend": -4.34
+    },
+    {
+      "student_id": "S004",
+      "name": "Diego Rivas",
+      "avg_score": 71.5,
+      "weeks_submitted": 15,
+      "last_score": 67.9,
+      "std_score": 10.3,
+      "risk": "bajo",
+      "trend": -3.11
+    },
+    {
+      "student_id": "S006",
+      "name": "Andr\u00e9s Le\u00f3n",
+      "avg_score": 68.6,
+      "weeks_submitted": 15,
+      "last_score": 74.1,
+      "std_score": 5.2,
+      "risk": "bajo",
+      "trend": 0.55
+    },
+    {
+      "student_id": "S025",
+      "name": "Gabriela Campos",
+      "avg_score": 67.4,
+      "weeks_submitted": 16,
+      "last_score": 81.5,
+      "std_score": 8.7,
+      "risk": "bajo",
+      "trend": 5.81
+    },
+    {
+      "student_id": "S028",
+      "name": "Oscar Rojas",
+      "avg_score": 66.7,
+      "weeks_submitted": 16,
+      "last_score": 75.7,
+      "std_score": 9.4,
+      "risk": "bajo",
+      "trend": 0.39
+    },
+    {
+      "student_id": "S016",
+      "name": "Rodrigo Fuentes",
+      "avg_score": 65.8,
+      "weeks_submitted": 16,
+      "last_score": 61.9,
+      "std_score": 8.6,
+      "risk": "bajo",
+      "trend": 4.85
+    },
+    {
+      "student_id": "S022",
+      "name": "\u00c1lvaro Pe\u00f1a",
+      "avg_score": 63.4,
+      "weeks_submitted": 14,
+      "last_score": 66.3,
+      "std_score": 7.8,
+      "risk": "medio",
+      "trend": 3.77
+    },
+    {
+      "student_id": "S012",
+      "name": "Felipe Herrera",
+      "avg_score": 60.9,
+      "weeks_submitted": 16,
+      "last_score": 69.8,
+      "std_score": 12.7,
+      "risk": "medio",
+      "trend": 4.89
+    },
+    {
+      "student_id": "S017",
+      "name": "Paulina Castro",
+      "avg_score": 59.5,
+      "weeks_submitted": 16,
+      "last_score": 70.6,
+      "std_score": 7.6,
+      "risk": "medio",
+      "trend": 5.47
+    },
+    {
+      "student_id": "S021",
+      "name": "Valentina R\u00edos",
+      "avg_score": 56.5,
+      "weeks_submitted": 16,
+      "last_score": 53.0,
+      "std_score": 9.7,
+      "risk": "medio",
+      "trend": -1.77
+    },
+    {
+      "student_id": "S002",
+      "name": "Carlos Mora",
+      "avg_score": 55.1,
+      "weeks_submitted": 16,
+      "last_score": 51.2,
+      "std_score": 5.4,
+      "risk": "medio",
+      "trend": -3.1
+    },
+    {
+      "student_id": "S018",
+      "name": "Tom\u00e1s Espinoza",
+      "avg_score": 53.4,
+      "weeks_submitted": 16,
+      "last_score": 59.9,
+      "std_score": 9.6,
+      "risk": "alto",
+      "trend": 3.0
+    },
+    {
+      "student_id": "S015",
+      "name": "Luc\u00eda Mendoza",
+      "avg_score": 51.0,
+      "weeks_submitted": 16,
+      "last_score": 54.9,
+      "std_score": 9.9,
+      "risk": "alto",
+      "trend": -1.5
+    },
+    {
+      "student_id": "S014",
+      "name": "Emilio Vargas",
+      "avg_score": 50.1,
+      "weeks_submitted": 16,
+      "last_score": 56.5,
+      "std_score": 9.6,
+      "risk": "alto",
+      "trend": 6.32
+    },
+    {
+      "student_id": "S019",
+      "name": "Renata Flores",
+      "avg_score": 48.5,
+      "weeks_submitted": 15,
+      "last_score": 41.6,
+      "std_score": 9.9,
+      "risk": "alto",
+      "trend": -4.28
+    },
+    {
+      "student_id": "S026",
+      "name": "Javier Guerrero",
+      "avg_score": 38.5,
+      "weeks_submitted": 16,
+      "last_score": 30.7,
+      "std_score": 8.6,
+      "risk": "alto",
+      "trend": -6.16
+    },
+    {
+      "student_id": "S024",
+      "name": "H\u00e9ctor Molina",
+      "avg_score": 31.5,
+      "weeks_submitted": 15,
+      "last_score": 32.9,
+      "std_score": 6.3,
+      "risk": "alto",
+      "trend": 0.19
+    }
+  ],
+  "weekly_stats": [
+    {
+      "week": 1,
+      "avg_score": 65.0,
+      "median_score": 67.75,
+      "min_score": 23.3,
+      "max_score": 98.1,
+      "submissions": 28,
+      "approval_rate": 60.7
+    },
+    {
+      "week": 2,
+      "avg_score": 67.9,
+      "median_score": 69.35,
+      "min_score": 33.3,
+      "max_score": 93.5,
+      "submissions": 28,
+      "approval_rate": 75.0
+    },
+    {
+      "week": 3,
+      "avg_score": 64.6,
+      "median_score": 65.8,
+      "min_score": 21.8,
+      "max_score": 93.9,
+      "submissions": 28,
+      "approval_rate": 60.7
+    },
+    {
+      "week": 4,
+      "avg_score": 67.0,
+      "median_score": 66.8,
+      "min_score": 33.1,
+      "max_score": 88.8,
+      "submissions": 28,
+      "approval_rate": 75.0
+    },
+    {
+      "week": 5,
+      "avg_score": 65.6,
+      "median_score": 64.05,
+      "min_score": 31.7,
+      "max_score": 94.3,
+      "submissions": 28,
+      "approval_rate": 64.3
+    },
+    {
+      "week": 6,
+      "avg_score": 68.6,
+      "median_score": 71.15,
+      "min_score": 28.1,
+      "max_score": 100.0,
+      "submissions": 28,
+      "approval_rate": 71.4
+    },
+    {
+      "week": 7,
+      "avg_score": 63.6,
+      "median_score": 61.95,
+      "min_score": 24.5,
+      "max_score": 100.0,
+      "submissions": 28,
+      "approval_rate": 60.7
+    },
+    {
+      "week": 8,
+      "avg_score": 64.9,
+      "median_score": 63.85,
+      "min_score": 34.9,
+      "max_score": 96.5,
+      "submissions": 28,
+      "approval_rate": 67.9
+    },
+    {
+      "week": 9,
+      "avg_score": 67.8,
+      "median_score": 72.05000000000001,
+      "min_score": 27.7,
+      "max_score": 100.0,
+      "submissions": 28,
+      "approval_rate": 60.7
+    },
+    {
+      "week": 10,
+      "avg_score": 69.2,
+      "median_score": 76.1,
+      "min_score": 37.2,
+      "max_score": 92.4,
+      "submissions": 25,
+      "approval_rate": 68.0
+    },
+    {
+      "week": 11,
+      "avg_score": 66.8,
+      "median_score": 71.2,
+      "min_score": 30.3,
+      "max_score": 100.0,
+      "submissions": 27,
+      "approval_rate": 70.4
+    },
+    {
+      "week": 12,
+      "avg_score": 64.3,
+      "median_score": 63.199999999999996,
+      "min_score": 26.9,
+      "max_score": 96.8,
+      "submissions": 26,
+      "approval_rate": 57.7
+    },
+    {
+      "week": 13,
+      "avg_score": 68.7,
+      "median_score": 75.1,
+      "min_score": 31.9,
+      "max_score": 93.9,
+      "submissions": 27,
+      "approval_rate": 70.4
+    },
+    {
+      "week": 14,
+      "avg_score": 68.6,
+      "median_score": 71.1,
+      "min_score": 34.6,
+      "max_score": 94.6,
+      "submissions": 28,
+      "approval_rate": 71.4
+    },
+    {
+      "week": 15,
+      "avg_score": 68.9,
+      "median_score": 70.30000000000001,
+      "min_score": 28.2,
+      "max_score": 99.1,
+      "submissions": 28,
+      "approval_rate": 71.4
+    },
+    {
+      "week": 16,
+      "avg_score": 67.4,
+      "median_score": 68.6,
+      "min_score": 30.7,
+      "max_score": 96.0,
+      "submissions": 27,
+      "approval_rate": 70.4
+    }
+  ],
+  "at_risk": [
+    {
+      "student_id": "S024",
+      "name": "H\u00e9ctor Molina",
+      "avg_score": 31.5,
+      "weeks_submitted": 15,
+      "trend": 0.19,
+      "risk": "alto"
+    },
+    {
+      "student_id": "S026",
+      "name": "Javier Guerrero",
+      "avg_score": 38.5,
+      "weeks_submitted": 16,
+      "trend": -6.16,
+      "risk": "alto"
+    },
+    {
+      "student_id": "S019",
+      "name": "Renata Flores",
+      "avg_score": 48.5,
+      "weeks_submitted": 15,
+      "trend": -4.28,
+      "risk": "alto"
+    },
+    {
+      "student_id": "S014",
+      "name": "Emilio Vargas",
+      "avg_score": 50.1,
+      "weeks_submitted": 16,
+      "trend": 6.32,
+      "risk": "alto"
+    },
+    {
+      "student_id": "S015",
+      "name": "Luc\u00eda Mendoza",
+      "avg_score": 51.0,
+      "weeks_submitted": 16,
+      "trend": -1.5,
+      "risk": "alto"
+    },
+    {
+      "student_id": "S018",
+      "name": "Tom\u00e1s Espinoza",
+      "avg_score": 53.4,
+      "weeks_submitted": 16,
+      "trend": 3.0,
+      "risk": "alto"
+    }
+  ],
+  "score_distribution": {
+    "bins": [
+      0,
+      40,
+      55,
+      65,
+      75,
+      85,
+      100
+    ],
+    "labels": [
+      "< 40",
+      "40\u201355",
+      "55\u201365",
+      "65\u201375",
+      "75\u201385",
+      "85\u2013100"
+    ],
+    "counts": [
+      35,
+      65,
+      94,
+      82,
+      103,
+      61
+    ]
+  },
+  "generated_at": "2026-04-22T01:23:57.754842"
+}

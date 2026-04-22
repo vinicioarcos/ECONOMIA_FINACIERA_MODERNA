@@ -1,0 +1,56 @@
+{
+  "week": 16,
+  "title": "Proyecto Final — Análisis de Portafolio",
+  "total": 100,
+  "auto_weight": 0.40,
+  "interpretation_weight": 0.60,
+  "criteria": [
+    {
+      "name": "Construcción de portafolio con datos reales o simulados",
+      "points": 20,
+      "auto": true,
+      "description": "Portafolio de al menos 3 activos con pesos que sumen 1"
+    },
+    {
+      "name": "Estimación de métricas de riesgo y retorno",
+      "points": 20,
+      "auto": true,
+      "description": "Retorno esperado, volatilidad, Sharpe ratio calculados correctamente"
+    },
+    {
+      "name": "Estimación de beta (CAPM)",
+      "points": 15,
+      "auto": false,
+      "description": "Beta de al menos un activo estimado e interpretado económicamente"
+    },
+    {
+      "name": "Análisis de VaR",
+      "points": 10,
+      "auto": false,
+      "description": "VaR calculado e interpretado en términos de pérdida monetaria esperada"
+    },
+    {
+      "name": "Análisis de frontera eficiente",
+      "points": 15,
+      "auto": false,
+      "description": "Gráfico de frontera eficiente con interpretación de diversificación"
+    },
+    {
+      "name": "Conclusiones económicas",
+      "points": 20,
+      "auto": false,
+      "description": "El estudiante formula recomendaciones de inversión justificadas con evidencia empírica, no solo fórmulas"
+    }
+  ],
+  "deliverables": [
+    "Notebook Jupyter completo y ejecutable",
+    "README con descripción del análisis",
+    "Máximo 3 páginas de informe ejecutivo (PDF o Markdown)"
+  ],
+  "evaluation_rubric_interpretation": {
+    "excellent": "El estudiante conecta los resultados empíricos con teoría económica relevante y formula argumentos propios",
+    "good": "El estudiante interpreta correctamente los resultados pero sin profundidad analítica",
+    "acceptable": "El estudiante presenta resultados pero la interpretación es superficial",
+    "insufficient": "El estudiante presenta código correcto pero sin ninguna interpretación económica"
+  }
+}

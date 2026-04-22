@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Econolab — Dashboard Docente</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap');
+
+    :root {
+      --bg:       #0a0e1a;
+      --surface:  #111827;
+      --border:   #1e2d45;
+      --text:     #e2e8f0;
+      --muted:    #64748b;
+      --blue:     #3b82f6;
+      --green:    #22c55e;
+      --amber:    #f59e0b;
+      --red:      #ef4444;
+      --purple:   #a855f7;
+      --cyan:     #06b6d4;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 14px;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 32px; height: 32px;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: white;
+    }
+
+    .logo-text {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+    }
+
+    .logo-sub {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .status-dot {
+      width: 7px; height: 7px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    /* ── Layout ── */
+    main {
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    .page-title {
+      margin-bottom: 28px;
+    }
+
+    .page-title h1 {
+      font-size: 22px;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+
+    .page-title p {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    /* ── KPI Cards ── */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .kpi {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+
+    .kpi:hover { border-color: #2e4060; }
+
+    .kpi::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+    }
+
+    .kpi.blue::before  { background: var(--blue); }
+    .kpi.green::before { background: var(--green); }
+    .kpi.amber::before { background: var(--amber); }
+    .kpi.red::before   { background: var(--red); }
+    .kpi.purple::before{ background: var(--purple); }
+
+    .kpi-label {
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      font-family: 'IBM Plex Mono', monospace;
+      margin-bottom: 10px;
+    }
+
+    .kpi-value {
+      font-size: 32px;
+      font-weight: 600;
+      font-family: 'IBM Plex Mono', monospace;
+      line-height: 1;
+    }
+
+    .kpi.blue  .kpi-value { color: var(--blue); }
+    .kpi.green .kpi-value { color: var(--green); }
+    .kpi.amber .kpi-value { color: var(--amber); }
+    .kpi.red   .kpi-value { color: var(--red); }
+    .kpi.purple .kpi-value { color: var(--purple); }
+
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── Charts grid ── */
+    .charts-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .chart-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .card-title {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.2px;
+      margin-bottom: 4px;
+    }
+
+    .card-sub {
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .chart-wrap {
+      position: relative;
+      height: 220px;
+    }
+
+    /* ── Bottom grid ── */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 20px;
+    }
+
+    /* ── Table ── */
+    .table-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .table-header {
+      padding: 20px 24px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .search-input {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: var(--text);
+      font-size: 12px;
+      font-family: 'IBM Plex Mono', monospace;
+      width: 180px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .search-input:focus { border-color: var(--blue); }
+    .search-input::placeholder { color: var(--muted); }
+
+    .table-scroll { overflow-x: auto; max-height: 340px; overflow-y: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    th {
+      background: #0d1420;
+      padding: 10px 16px;
+      text-align: left;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      position: sticky;
+      top: 0;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    th:hover { color: var(--text); }
+
+    td {
+      padding: 10px 16px;
+      border-top: 1px solid var(--border);
+      font-size: 12px;
+    }
+
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .score-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .score-bar {
+      height: 4px;
+      border-radius: 2px;
+      flex: 1;
+      background: var(--border);
+      overflow: hidden;
+    }
+
+    .score-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.3s;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      font-family: 'IBM Plex Mono', monospace;
+      letter-spacing: 0.3px;
+    }
+
+    .badge-red    { background: rgba(239,68,68,0.15);  color: var(--red); }
+    .badge-amber  { background: rgba(245,158,11,0.15); color: var(--amber); }
+    .badge-green  { background: rgba(34,197,94,0.15);  color: var(--green); }
+
+    .trend-up   { color: var(--green); }
+    .trend-down { color: var(--red); }
+    .trend-flat { color: var(--muted); }
+
+    /* ── At-Risk panel ── */
+    .risk-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--red);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .risk-header {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .risk-icon {
+      width: 28px; height: 28px;
+      background: rgba(239,68,68,0.15);
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+    }
+
+    .risk-student {
+      padding: 14px 20px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .risk-student:first-child { border-top: none; }
+
+    .avatar {
+      width: 32px; height: 32px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 600;
+      flex-shrink: 0;
+      font-family: 'IBM Plex Mono', monospace;
+    }
+
+    .risk-info { flex: 1; min-width: 0; }
+
+    .risk-name {
+      font-size: 13px;
+      font-weight: 500;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .risk-meta {
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'IBM Plex Mono', monospace;
+      margin-top: 2px;
+    }
+
+    .risk-score {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* ── Week selector ── */
+    .week-tabs {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+
+    .week-tab {
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--muted);
+      transition: all 0.15s;
+    }
+
+    .week-tab:hover { border-color: var(--blue); color: var(--blue); }
+    .week-tab.active { background: var(--blue); border-color: var(--blue); color: white; }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-mark">EL</div>
+    <div>
+      <div class="logo-text">Econolab</div>
+      <div class="logo-sub">Financial Economics · Dashboard</div>
+    </div>
+  </div>
+  <div class="header-right">
+    <div class="status-dot"></div>
+    <span>live · semestre 2025-A</span>
+    <span style="color: var(--border)">|</span>
+    <span id="clock"></span>
+  </div>
+</header>
+
+<main>
+  <div class="page-title">
+    <h1>Panel Docente</h1>
+    <p>Economía Financiera — 7mo semestre · <span id="dateStr"></span></p>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-grid">
+    <div class="kpi blue">
+      <div class="kpi-label">Estudiantes</div>
+      <div class="kpi-value">28</div>
+      <div class="kpi-sub">activos en el curso</div>
+    </div>
+    <div class="kpi green">
+      <div class="kpi-label">Promedio</div>
+      <div class="kpi-value">66.8</div>
+      <div class="kpi-sub">sobre 100</div>
+    </div>
+    <div class="kpi amber">
+      <div class="kpi-label">Aprobación</div>
+      <div class="kpi-value">74%</div>
+      <div class="kpi-sub">≥ 60 puntos</div>
+    </div>
+    <div class="kpi red">
+      <div class="kpi-label">En Riesgo</div>
+      <div class="kpi-value">6</div>
+      <div class="kpi-sub">promedio &lt; 55</div>
+    </div>
+    <div class="kpi purple">
+      <div class="kpi-label">Semana</div>
+      <div class="kpi-value" id="currentWeek">—</div>
+      <div class="kpi-sub">de 16 del semestre</div>
+    </div>
+  </div>
+
+  <!-- Charts -->
+  <div class="charts-grid">
+    <div class="chart-card">
+      <div class="card-title">Promedio semanal del curso</div>
+      <div class="card-sub">evolución de notas · semanas 1–16</div>
+      <div class="chart-wrap">
+        <canvas id="weeklyChart"></canvas>
+      </div>
+    </div>
+    <div class="chart-card">
+      <div class="card-title">Distribución de notas</div>
+      <div class="card-sub">todas las entregas · histograma</div>
+      <div class="chart-wrap">
+        <canvas id="distChart"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="bottom-grid">
+    <!-- Student table -->
+    <div class="table-card">
+      <div class="table-header">
+        <div>
+          <div class="card-title">Estudiantes</div>
+          <div class="card-sub" style="margin-bottom:0">ordenar por columna · click</div>
+        </div>
+        <input class="search-input" type="text" id="searchInput" placeholder="buscar estudiante..." />
+      </div>
+      <div class="table-scroll">
+        <table id="studentTable">
+          <thead>
+            <tr>
+              <th onclick="sortTable(0)">Nombre ↕</th>
+              <th onclick="sortTable(1)">Promedio ↕</th>
+              <th onclick="sortTable(2)">Semanas ↕</th>
+              <th onclick="sortTable(3)">Tendencia ↕</th>
+              <th>Riesgo</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- At-risk panel -->
+    <div class="risk-card">
+      <div class="risk-header">
+        <div class="risk-icon">⚠️</div>
+        <div>
+          <div class="card-title">Alertas de Riesgo Académico</div>
+          <div style="font-size:11px; color:var(--muted); font-family:'IBM Plex Mono', monospace; margin-top:3px;">promedio &lt; 55 · requieren atención</div>
+        </div>
+      </div>
+      <div id="riskList"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+// ─── DATA (generada desde analytics/dashboard_data.py) ───────────────────────
+const DATA = {
+  weekly_stats: [
+    {week:1,  avg_score:68.2, approval_rate:78, submissions:27},
+    {week:2,  avg_score:65.4, approval_rate:71, submissions:28},
+    {week:3,  avg_score:62.1, approval_rate:68, submissions:28},
+    {week:4,  avg_score:63.8, approval_rate:70, submissions:26},
+    {week:5,  avg_score:66.5, approval_rate:73, submissions:27},
+    {week:6,  avg_score:64.2, approval_rate:69, submissions:27},
+    {week:7,  avg_score:60.9, approval_rate:64, submissions:26},
+    {week:8,  avg_score:58.3, approval_rate:60, submissions:25},  // parcial
+    {week:9,  avg_score:67.1, approval_rate:75, submissions:26},
+    {week:10, avg_score:69.4, approval_rate:79, submissions:26},
+    {week:11, avg_score:70.2, approval_rate:80, submissions:27},
+    {week:12, avg_score:68.8, approval_rate:76, submissions:25},
+    {week:13, avg_score:71.5, approval_rate:82, submissions:26},
+    {week:14, avg_score:69.0, approval_rate:77, submissions:25},
+    {week:15, avg_score:72.1, approval_rate:84, submissions:27},
+    {week:16, avg_score:74.8, approval_rate:87, submissions:26},
+  ],
+  score_distribution: {
+    labels: ["< 40", "40–55", "55–65", "65–75", "75–85", "85–100"],
+    counts: [28, 67, 134, 189, 145, 89]
+  },
+  students: [
+    {name:"Ana Torres",      avg_score:89.2, weeks_submitted:16, trend:0.6, risk:"bajo"},
+    {name:"Carlos Mora",     avg_score:52.1, weeks_submitted:12, trend:-0.8,risk:"alto"},
+    {name:"Sofía Vega",      avg_score:77.8, weeks_submitted:15, trend:0.4, risk:"bajo"},
+    {name:"Diego Rivas",     avg_score:61.4, weeks_submitted:14, trend:0.2, risk:"bajo"},
+    {name:"Valeria Cruz",    avg_score:45.3, weeks_submitted:10, trend:-1.1,risk:"alto"},
+    {name:"Andrés León",     avg_score:83.5, weeks_submitted:16, trend:0.7, risk:"bajo"},
+    {name:"Camila Ortiz",    avg_score:58.9, weeks_submitted:13, trend:0.1, risk:"medio"},
+    {name:"Mateo Silva",     avg_score:70.2, weeks_submitted:15, trend:0.3, risk:"bajo"},
+    {name:"Isabella Ruiz",   avg_score:41.8, weeks_submitted:9,  trend:-0.5,risk:"alto"},
+    {name:"Sebastián Paz",   avg_score:79.6, weeks_submitted:16, trend:0.5, risk:"bajo"},
+    {name:"Daniela Reyes",   avg_score:62.3, weeks_submitted:14, trend:0.0, risk:"bajo"},
+    {name:"Felipe Herrera",  avg_score:54.7, weeks_submitted:11, trend:-0.3,risk:"alto"},
+    {name:"Natalia Jiménez", avg_score:85.1, weeks_submitted:16, trend:0.9, risk:"bajo"},
+    {name:"Emilio Vargas",   avg_score:66.4, weeks_submitted:14, trend:0.2, risk:"bajo"},
+    {name:"Lucía Mendoza",   avg_score:73.8, weeks_submitted:15, trend:0.4, risk:"bajo"},
+    {name:"Rodrigo Fuentes", avg_score:48.2, weeks_submitted:10, trend:-0.7,risk:"alto"},
+    {name:"Paulina Castro",  avg_score:77.5, weeks_submitted:15, trend:0.6, risk:"bajo"},
+    {name:"Tomás Espinoza",  avg_score:63.1, weeks_submitted:13, trend:0.1, risk:"bajo"},
+    {name:"Renata Flores",   avg_score:91.4, weeks_submitted:16, trend:1.1, risk:"bajo"},
+    {name:"Ignacio Bravo",   avg_score:69.7, weeks_submitted:14, trend:0.3, risk:"bajo"},
+    {name:"Valentina Ríos",  avg_score:56.8, weeks_submitted:12, trend:-0.2,risk:"medio"},
+    {name:"Álvaro Peña",     avg_score:74.3, weeks_submitted:15, trend:0.4, risk:"bajo"},
+    {name:"Carolina Salinas",avg_score:67.9, weeks_submitted:14, trend:0.2, risk:"bajo"},
+    {name:"Héctor Molina",   avg_score:60.5, weeks_submitted:13, trend:0.0, risk:"bajo"},
+    {name:"Gabriela Campos", avg_score:82.6, weeks_submitted:16, trend:0.8, risk:"bajo"},
+    {name:"Javier Guerrero", avg_score:55.9, weeks_submitted:12, trend:-0.1,risk:"medio"},
+    {name:"Fernanda Pinto",  avg_score:78.4, weeks_submitted:15, trend:0.5, risk:"bajo"},
+    {name:"Oscar Rojas",     avg_score:43.7, weeks_submitted:9,  trend:-0.9,risk:"alto"},
+  ]
+};
+
+// ─── CLOCK & DATE ────────────────────────────────────────────────────────────
+function updateClock() {
+  const now = new Date();
+  document.getElementById('clock').textContent =
+    now.toLocaleTimeString('es-EC', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+document.getElementById('dateStr').textContent =
+  new Date().toLocaleDateString('es-EC', {weekday:'long', year:'numeric', month:'long', day:'numeric'});
+
+// Semana actual (simulada)
+const weekNum = Math.min(16, Math.ceil((new Date() - new Date('2025-01-20')) / (7*24*3600*1000)));
+document.getElementById('currentWeek').textContent = Math.max(1, weekNum || 12);
+
+// ─── WEEKLY CHART ────────────────────────────────────────────────────────────
+const weeklyCtx = document.getElementById('weeklyChart').getContext('2d');
+new Chart(weeklyCtx, {
+  type: 'line',
+  data: {
+    labels: DATA.weekly_stats.map(d => `S${d.week}`),
+    datasets: [
+      {
+        label: 'Promedio',
+        data: DATA.weekly_stats.map(d => d.avg_score),
+        borderColor: '#3b82f6',
+        backgroundColor: 'rgba(59,130,246,0.1)',
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3,
+        pointHoverRadius: 6,
+        borderWidth: 2,
+      },
+      {
+        label: 'Aprobación (%)',
+        data: DATA.weekly_stats.map(d => d.approval_rate),
+        borderColor: '#22c55e',
+        backgroundColor: 'transparent',
+        borderDash: [4, 4],
+        tension: 0.4,
+        pointRadius: 2,
+        borderWidth: 1.5,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        labels: { color: '#94a3b8', font: { family: 'IBM Plex Mono', size: 10 }, boxWidth: 14 }
+      },
+      tooltip: {
+        backgroundColor: '#111827',
+        borderColor: '#1e2d45',
+        borderWidth: 1,
+        titleColor: '#e2e8f0',
+        bodyColor: '#94a3b8',
+        titleFont: { family: 'IBM Plex Mono' },
+        bodyFont: { family: 'IBM Plex Mono', size: 11 },
+      }
+    },
+    scales: {
+      x: {
+        grid: { color: 'rgba(30,45,69,0.5)' },
+        ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } }
+      },
+      y: {
+        min: 40, max: 100,
+        grid: { color: 'rgba(30,45,69,0.5)' },
+        ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } }
+      }
+    }
+  }
+});
+
+// ─── DIST CHART ──────────────────────────────────────────────────────────────
+const distCtx = document.getElementById('distChart').getContext('2d');
+const barColors = ['#ef4444','#f59e0b','#f59e0b','#3b82f6','#22c55e','#a855f7'];
+new Chart(distCtx, {
+  type: 'bar',
+  data: {
+    labels: DATA.score_distribution.labels,
+    datasets: [{
+      data: DATA.score_distribution.counts,
+      backgroundColor: barColors.map(c => c + '99'),
+      borderColor: barColors,
+      borderWidth: 1.5,
+      borderRadius: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: '#111827',
+        borderColor: '#1e2d45',
+        borderWidth: 1,
+        titleColor: '#e2e8f0',
+        bodyColor: '#94a3b8',
+        titleFont: { family: 'IBM Plex Mono', size: 11 },
+        bodyFont: { family: 'IBM Plex Mono', size: 11 },
+        callbacks: {
+          label: ctx => ` ${ctx.raw} entregas`
+        }
+      }
+    },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } }
+      },
+      y: {
+        grid: { color: 'rgba(30,45,69,0.5)' },
+        ticks: { color: '#64748b', font: { family: 'IBM Plex Mono', size: 10 } }
+      }
+    }
+  }
+});
+
+// ─── STUDENT TABLE ───────────────────────────────────────────────────────────
+let sortDir = {};
+let filteredStudents = [...DATA.students].sort((a,b) => b.avg_score - a.avg_score);
+
+function riskBadge(r) {
+  const map = { alto: 'badge-red', medio: 'badge-amber', bajo: 'badge-green' };
+  return `<span class="badge ${map[r]}">${r.toUpperCase()}</span>`;
+}
+
+function trendArrow(t) {
+  if (t > 0.3) return `<span class="trend-up">▲ +${t.toFixed(1)}</span>`;
+  if (t < -0.3) return `<span class="trend-down">▼ ${t.toFixed(1)}</span>`;
+  return `<span class="trend-flat">→ ${t.toFixed(1)}</span>`;
+}
+
+function scoreColor(s) {
+  if (s >= 75) return '#22c55e';
+  if (s >= 60) return '#3b82f6';
+  if (s >= 50) return '#f59e0b';
+  return '#ef4444';
+}
+
+function renderTable(data) {
+  const tbody = document.getElementById('tableBody');
+  tbody.innerHTML = data.map(s => `
+    <tr>
+      <td style="font-weight:500">${s.name}</td>
+      <td>
+        <div class="score-bar-wrap">
+          <span style="font-family:'IBM Plex Mono';font-weight:600;color:${scoreColor(s.avg_score)};width:34px">${s.avg_score.toFixed(1)}</span>
+          <div class="score-bar">
+            <div class="score-fill" style="width:${s.avg_score}%;background:${scoreColor(s.avg_score)}"></div>
+          </div>
+        </div>
+      </td>
+      <td style="font-family:'IBM Plex Mono';color:var(--muted)">${s.weeks_submitted}/16</td>
+      <td style="font-family:'IBM Plex Mono';font-size:12px">${trendArrow(s.trend)}</td>
+      <td>${riskBadge(s.risk)}</td>
+    </tr>
+  `).join('');
+}
+
+renderTable(filteredStudents);
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  const q = e.target.value.toLowerCase();
+  filteredStudents = DATA.students.filter(s => s.name.toLowerCase().includes(q));
+  renderTable(filteredStudents);
+});
+
+function sortTable(col) {
+  sortDir[col] = !sortDir[col];
+  const keys = ['name','avg_score','weeks_submitted','trend'];
+  filteredStudents.sort((a,b) => {
+    const av = a[keys[col]], bv = b[keys[col]];
+    return sortDir[col]
+      ? (typeof av === 'string' ? av.localeCompare(bv) : av - bv)
+      : (typeof av === 'string' ? bv.localeCompare(av) : bv - av);
+  });
+  renderTable(filteredStudents);
+}
+
+// ─── AT-RISK LIST ─────────────────────────────────────────────────────────────
+const avatarColors = ['#dc2626','#ea580c','#d97706','#7c3aed','#be185d','#0f766e'];
+const atRisk = DATA.students.filter(s => s.risk === 'alto').sort((a,b) => a.avg_score - b.avg_score);
+
+document.getElementById('riskList').innerHTML = atRisk.map((s, i) => {
+  const initials = s.name.split(' ').map(w=>w[0]).join('').slice(0,2);
+  const color = avatarColors[i % avatarColors.length];
+  return `
+    <div class="risk-student">
+      <div class="avatar" style="background:${color}22;color:${color}">${initials}</div>
+      <div class="risk-info">
+        <div class="risk-name">${s.name}</div>
+        <div class="risk-meta">${s.weeks_submitted}/16 semanas · tendencia ${s.trend > 0 ? '▲' : '▼'} ${Math.abs(s.trend).toFixed(1)}</div>
+      </div>
+      <div class="risk-score">${s.avg_score.toFixed(1)}</div>
+    </div>
+  `;
+}).join('');
+</script>
+</body>
+</html>

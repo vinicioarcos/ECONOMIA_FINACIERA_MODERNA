@@ -1,0 +1,12 @@
+# Econolab Financial Economics — Dependencias del curso
+numpy>=1.24
+pandas>=2.0
+matplotlib>=3.7
+scipy>=1.10
+statsmodels>=0.14
+yfinance>=0.2
+pytest>=7.0
+pytest-json-report>=1.5
+jupyter>=1.0
+nbformat>=5.7
+seaborn>=0.12

@@ -1,0 +1,42 @@
+{
+  "course": "Economía Financiera - Econolab",
+  "max_score": 100,
+  "auto_weight": 0.70,
+  "interpretation_weight": 0.30,
+  "criteria": {
+    "code_correctness": {
+      "weight": 0.40,
+      "description": "Tests automáticos: código funciona correctamente"
+    },
+    "economic_interpretation": {
+      "weight": 0.30,
+      "description": "Interpretación económica de resultados (revisión manual)"
+    },
+    "data_analysis": {
+      "weight": 0.20,
+      "description": "Análisis aplicado con datos reales o simulados"
+    },
+    "code_quality": {
+      "weight": 0.10,
+      "description": "Claridad del código, comentarios, reproducibilidad"
+    }
+  },
+  "weekly_rubrics": {
+    "week_01": {"name": "Datos financieros", "focus": ["visualización", "descarga de datos"]},
+    "week_02": {"name": "Retornos", "focus": ["retornos simples", "retornos logarítmicos"]},
+    "week_03": {"name": "VPN y TIR", "focus": ["flujos de caja", "decisión de inversión"]},
+    "week_04": {"name": "Riesgo básico", "focus": ["media", "varianza", "ranking de activos"]},
+    "week_05": {"name": "Portafolios", "focus": ["pesos", "retorno portafolio", "riesgo portafolio"]},
+    "week_06": {"name": "Correlación", "focus": ["matriz de correlación", "diversificación"]},
+    "week_07": {"name": "CAPM", "focus": ["estimación beta", "SML", "interpretación"]},
+    "week_08": {"name": "Parcial aplicado", "focus": ["integración semanas 1-7"]},
+    "week_09": {"name": "Series de tiempo", "focus": ["autocorrelación", "volatilidad"]},
+    "week_10": {"name": "Econometría", "focus": ["regresión OLS", "CAPM empírico"]},
+    "week_11": {"name": "Volatilidad", "focus": ["volatilidad móvil", "clustering"]},
+    "week_12": {"name": "VaR", "focus": ["VaR histórico", "VaR paramétrico"]},
+    "week_13": {"name": "Proyectos", "focus": ["VPN aplicado", "WACC", "comparación"]},
+    "week_14": {"name": "Backtesting", "focus": ["estrategia simple", "evaluación histórica"]},
+    "week_15": {"name": "Proyecto final I", "focus": ["portafolio completo", "análisis de riesgo"]},
+    "week_16": {"name": "Proyecto final II", "focus": ["defensa", "interpretación económica"]}
+  }
+}

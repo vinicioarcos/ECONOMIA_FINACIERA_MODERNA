@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_metadata/
+
+# Data (raw data no se sube al repo)
+data/raw/*.csv
+data/processed/*.csv
+
+# Resultados de tests
+test_results.json
+grade_report.json
+
+# Entornos
+.env
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/

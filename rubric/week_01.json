@@ -1,0 +1,39 @@
+{
+  "week": 1,
+  "title": "Introducción a Datos Financieros",
+  "total": 100,
+  "auto_weight": 0.70,
+  "interpretation_weight": 0.30,
+  "due_days_after_class": 7,
+  "criteria": [
+    {
+      "name": "Carga y visualización de datos de precios",
+      "points": 25,
+      "auto": true,
+      "description": "El estudiante carga correctamente los datos y genera gráfico de series de precios"
+    },
+    {
+      "name": "Cálculo de estadísticas descriptivas básicas",
+      "points": 20,
+      "auto": true,
+      "description": "Media, máximo, mínimo y desviación estándar de los precios"
+    },
+    {
+      "name": "Identificación de tendencias en datos",
+      "points": 25,
+      "auto": true,
+      "description": "El código identifica correctamente el activo más/menos volátil"
+    },
+    {
+      "name": "Interpretación económica",
+      "points": 30,
+      "auto": false,
+      "description": "El estudiante interpreta en 2-3 párrafos qué información económica revelan los datos observados"
+    }
+  ],
+  "learning_objectives": [
+    "Entender qué es un precio financiero y qué información contiene",
+    "Leer y manipular series de tiempo financieras en Python",
+    "Distinguir entre precios y retornos como representación de la información"
+  ]
+}
